@@ -20,9 +20,15 @@ jobs:
 
     - name: Connect to EC2 and Deploy Docker Compose
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@54.234.235.218 << EOF
-          cd /home/ubuntu/my-app
+        ssh -o StrictHostKeyChecking=no ec2-user@54.234.235.218 << 'EOF'
+          set -e  # Exit immediately if a command exits with a non-zero status
+          echo "Navigating to the application directory..."
+          cd /home/ubuntu/my-app || exit
+          echo "Pulling latest code from the main branch..."
           git pull origin main
+          echo "Stopping and removing existing Docker containers..."
           docker-compose down
+          echo "Building and starting Docker containers..."
           docker-compose up -d --build
+          echo "Deployment complete."
         EOF
