@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <div className="text-center mb-4">
-      <h5 style={{ textAlign: "center", padding: "3rem" }}>Student Attendance Tracker at Sony Sugema IT College</h5>
+      <h5 style={{ textAlign: "center", padding: "3rem" }}>Student Attendance Tracker REVA College</h5>
       <Link to="/add-student">
         <div className="col-4">
           <button className="btn btn-primary" type="submit">
