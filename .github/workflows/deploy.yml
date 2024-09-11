@@ -20,4 +20,9 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-158-122-64.compute-1.amazonaws.com "cd /home/ubuntu/my-app && git pull origin main && docker-compose down && docker-compose up -d --build"
+        ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-158-122-64.compute-1.amazonaws.com << 'EOF'
+        cd /home/ubuntu/my-app
+        git pull origin main
+        docker-compose down
+        docker-compose up -d --build
+        EOF
