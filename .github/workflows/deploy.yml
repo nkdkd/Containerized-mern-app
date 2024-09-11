@@ -1,3 +1,4 @@
+
 name: Deploy to EC2
 
 on:
@@ -21,26 +22,8 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-158-122-64.compute-1.amazonaws.com << 'EOF'
-        # Navigate to the project directory
         cd Containerized-mern-app/Dockerized-mern-app/
-        
-        # Pull the latest code from the GitHub repository
         git pull origin main
-        
-        # Install Docker
-        sudo apt-get update
-        sudo apt-get install -y docker.io
-        sudo usermod -aG docker $USER
-        sudo chmod 777 /var/run/docker.sock
-        # Install Docker Compose
-        sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
-        
-        # Ensure Docker is running
-        sudo systemctl start docker
-        sudo systemctl enable docker
-
-        # Deploy the application using Docker-Compose
         docker-compose down
         docker-compose up -d --build
         EOF
