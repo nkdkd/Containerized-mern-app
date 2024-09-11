@@ -20,8 +20,10 @@ jobs:
 
     - name: Connect to EC2 and Deploy Docker Compose
       run: |
+        set -e  # Exit immediately if a command exits with a non-zero status
+        echo "Connecting to EC2 instance and deploying application..."
         ssh -o StrictHostKeyChecking=no ec2-user@54.234.235.218 << 'EOF'
-          set -e  # Exit immediately if a command exits with a non-zero status
+          set -e
           echo "Navigating to the application directory..."
           cd /home/ubuntu/my-app || exit
           echo "Pulling latest code from the main branch..."
