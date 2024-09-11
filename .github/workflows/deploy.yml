@@ -20,8 +20,8 @@ jobs:
 
     - name: Connect to EC2 and Deploy Docker Compose
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@<EC2_PUBLIC_IP> << EOF
-          cd /path/to/your/app
+        ssh -o StrictHostKeyChecking=no ec2-user@54.234.235.218 << EOF
+          cd /home/ubuntu/my-app
           git pull origin main
           docker-compose down
           docker-compose up -d --build
