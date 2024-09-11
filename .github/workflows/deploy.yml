@@ -18,11 +18,14 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Connect to EC2 and Deploy Docker Compose
+    - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@<EC2_PUBLIC_IP> << EOF
+        ssh -o StrictHostKeyChecking=no ec2-user@<EC2_PUBLIC_IP> << 'EOF'
           cd /path/to/your/app
           git pull origin main
           docker-compose down
           docker-compose up -d --build
         EOF
+      env:
+        SSH_AUTH_SOCK: /tmp/ssh-XXXXXXpKGtsp/agent.1693
+        SSH_AGENT_PID: 1694
