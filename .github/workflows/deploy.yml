@@ -22,7 +22,6 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-158-122-64.compute-1.amazonaws.com << 'EOF'
         # Navigate to the project directory
-        cd /home/ubuntu/my-app
         cd Containerized-mern-app/Dockerized-mern-app/
         
         # Pull the latest code from the GitHub repository
