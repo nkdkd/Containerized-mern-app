@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main  # Deploy on push to the main branch
+      - main
 
 jobs:
   deploy:
@@ -20,9 +20,4 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@54.234.235.218 << 'EOF'
-        cd /path/to/your/app
-        git pull origin main
-        docker-compose down
-        docker-compose up -d --build
-        EOF
+        ssh -o StrictHostKeyChecking=no ec2-user@54.234.235.218 "cd /home/ubuntu/my-app && git pull origin main && docker-compose down && docker-compose up -d --build"
